@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ isEditView ? 'Edit' : 'New' }} Donation</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="closeModal()">
+            <ion-icon name="close"></ion-icon>
+          </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Name</ion-label>
+      <ion-input [(ngModel)]="donation.name" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Address</ion-label>
+      <ion-input [(ngModel)]="donation.address" type="text"></ion-input>
+    </ion-item>
+    <div *ngFor="let category of categories">
+      <ion-item>
+        <ion-label floating>{{ category.name }}</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+    </div>
+  </ion-list>
+  <div padding>
+    <button ion-button *ngIf="!isEditView" block (click)="onCreate()">Create</button>
+    <button ion-button *ngIf="isEditView" block (click)="onUpdate()">Update</button>
+    <button ion-button *ngIf="isEditView" block color="danger" (click)="onDelete()">Delete</button>
+  </div>
+</ion-content>

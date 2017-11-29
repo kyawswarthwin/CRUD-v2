@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title>Donations</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="onReload($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <button ion-item *ngFor="let donation of donations" (click)="openModal('DonationPage', { donation: donation, categories: categories })">
+        <h2>{{ donation.name }}</h2>
+        <p>{{ donation.address }}</p>
+      </button>
+  </ion-list>
+  <ion-fab right bottom>
+    <button ion-fab color="danger" (click)="openModal('DonationPage', { categories: categories })">
+        <ion-icon name="add"></ion-icon>
+      </button>
+  </ion-fab>
+</ion-content>
